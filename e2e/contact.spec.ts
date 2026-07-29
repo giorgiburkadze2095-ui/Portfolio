@@ -9,10 +9,24 @@ test.describe('Contact section', () => {
     )
   })
 
-  test('GitHub and LinkedIn buttons are present', async ({ page }) => {
+  test('GitHub and LinkedIn buttons link to the real profiles', async ({
+    page,
+  }) => {
     await page.goto('/#contact')
-    await expect(page.getByRole('link', { name: 'GitHub' })).toBeVisible()
-    await expect(page.getByRole('link', { name: 'LinkedIn' })).toBeVisible()
+
+    const github = page.getByRole('link', { name: 'GitHub' })
+    await expect(github).toHaveAttribute(
+      'href',
+      'https://github.com/giorgiburkadze2095-ui/',
+    )
+    await expect(github).toHaveAttribute('target', '_blank')
+
+    const linkedin = page.getByRole('link', { name: 'LinkedIn' })
+    await expect(linkedin).toHaveAttribute(
+      'href',
+      'https://www.linkedin.com/in/giorgi-burkadze-61b341406/',
+    )
+    await expect(linkedin).toHaveAttribute('target', '_blank')
   })
 
   test('footer credit and copyright are visible', async ({ page }) => {

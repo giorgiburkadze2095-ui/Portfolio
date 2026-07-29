@@ -27,6 +27,36 @@ test.describe('Navigation', () => {
     await expect(page.locator('#top')).toBeInViewport()
   })
 
+  test('desktop primary CTA opens the mail client via mailto, distinct from the Contact nav link', async ({
+    page,
+  }) => {
+    test.skip((page.viewportSize()?.width ?? 0) < 768, 'desktop viewport only')
+    await page.goto('/')
+
+    const cta = page.getByRole('link', { name: "Let's talk" })
+    await expect(cta).toHaveAttribute(
+      'href',
+      'mailto:giorgiburkadze2095@gmail.com',
+    )
+
+    const contactLink = page
+      .getByRole('navigation')
+      .getByRole('link', { name: 'Contact', exact: true })
+    await expect(contactLink).toHaveAttribute('href', '#contact')
+  })
+
+  test('mobile menu includes a primary CTA that opens the mail client', async ({
+    page,
+  }) => {
+    test.skip((page.viewportSize()?.width ?? 0) >= 768, 'mobile viewport only')
+    await page.goto('/')
+
+    await page.getByRole('button', { name: 'Open menu' }).click()
+    await expect(
+      page.getByRole('link', { name: "Let's talk" }),
+    ).toHaveAttribute('href', 'mailto:giorgiburkadze2095@gmail.com')
+  })
+
   test('mobile menu opens, lists all links, and navigates to a section', async ({
     page,
   }) => {

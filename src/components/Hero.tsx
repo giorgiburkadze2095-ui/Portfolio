@@ -16,10 +16,7 @@ export default function Hero() {
         className="animate-blob absolute -right-24 top-1/2 h-96 w-96 rounded-full bg-accent-2/20 blur-3xl"
         style={{ animationDelay: '4s' }}
       />
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,#000_40%,transparent_100%)]"
-      />
+      <div aria-hidden className="grid-backdrop absolute inset-0" />
 
       <div className="relative mx-auto max-w-4xl text-center">
         <motion.p
@@ -58,7 +55,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="mx-auto mt-2 max-w-xl text-sm text-muted"
         >
-          Creator of <span className="font-medium text-ink">Helop</span>
+          Creator of <span className="font-medium text-ink"> Helop</span>
         </motion.p>
 
         <motion.div

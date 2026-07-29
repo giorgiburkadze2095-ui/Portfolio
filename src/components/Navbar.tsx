@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { EMAIL } from '../constants'
+import ThemeToggle from './ThemeToggle'
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
@@ -49,21 +51,27 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className="hidden rounded-full border border-border px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent md:inline-block"
-        >
-          Let's talk
-        </a>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
 
-        <button
-          type="button"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen((v) => !v)}
-          className="text-ink md:hidden"
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          <motion.a
+            href={`mailto:${EMAIL}`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.96 }}
+            className="hidden items-center rounded-full bg-gradient-to-r from-accent to-accent-2 px-4 py-2 text-sm font-semibold text-bg shadow-[0_0_0_0_var(--color-accent)] transition-shadow duration-300 hover:shadow-[0_0_24px_-4px_var(--color-accent-2)] md:inline-flex"
+          >
+            Let's talk
+          </motion.a>
+
+          <button
+            type="button"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            onClick={() => setOpen((v) => !v)}
+            className="text-ink md:hidden"
+          >
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -88,6 +96,15 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
+            <div className="px-6 pb-6">
+              <a
+                href={`mailto:${EMAIL}`}
+                onClick={() => setOpen(false)}
+                className="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-accent to-accent-2 px-4 py-2.5 text-sm font-semibold text-bg"
+              >
+                Let's talk
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,12 +1,11 @@
 import { Mail } from 'lucide-react'
+import { EMAIL } from '../constants'
 import { GithubIcon, LinkedinIcon } from './icons'
 import Reveal from './Reveal'
 
-const EMAIL = 'giorgiburkadze2095@gmail.com'
 const linkedInProfile = 'https://www.linkedin.com/in/giorgi-burkadze-61b341406/'
 const githubProfile = 'https://github.com/giorgiburkadze2095-ui/'
 
-// TODO: replace with real profile URLs
 const SOCIAL_LINKS = [
   { label: 'Email', icon: Mail, href: `mailto:${EMAIL}` },
   { label: 'GitHub', icon: GithubIcon, href: githubProfile },

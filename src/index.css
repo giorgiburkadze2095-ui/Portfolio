@@ -4,6 +4,7 @@
   --font-sans:
     'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
+  /* Dark palette (default) */
   --color-bg: #08080c;
   --color-surface: #101014;
   --color-surface-hover: #17171d;
@@ -41,6 +42,44 @@
   }
 }
 
+/* Explicit dark theme (user-selected, overrides system preference) */
+:root[data-theme='dark'] {
+  --color-bg: #08080c;
+  --color-surface: #101014;
+  --color-surface-hover: #17171d;
+  --color-border: #232329;
+  --color-ink: #f4f4f6;
+  --color-muted: #9a9aa6;
+  --color-accent: #22d3ee;
+  --color-accent-2: #a855f7;
+}
+
+/* Explicit light theme (user-selected, overrides system preference) */
+:root[data-theme='light'] {
+  --color-bg: #ffffff;
+  --color-surface: #f6f6f8;
+  --color-surface-hover: #ececf1;
+  --color-border: #e2e2e8;
+  --color-ink: #0a0a0f;
+  --color-muted: #5b5b66;
+  --color-accent: #0891b2;
+  --color-accent-2: #9333ea;
+}
+
+/* No-JS fallback: honor system preference before the init script runs */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --color-bg: #ffffff;
+    --color-surface: #f6f6f8;
+    --color-surface-hover: #ececf1;
+    --color-border: #e2e2e8;
+    --color-ink: #0a0a0f;
+    --color-muted: #5b5b66;
+    --color-accent: #0891b2;
+    --color-accent-2: #9333ea;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -52,6 +91,44 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth theme transitions across backgrounds, text, borders, and shadows */
+*,
+*::before,
+*::after {
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    color 300ms ease,
+    box-shadow 300ms ease,
+    fill 300ms ease,
+    stroke 300ms ease;
+}
+
+.grid-backdrop {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-ink) 6%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-ink) 6%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  mask-image: radial-gradient(
+    ellipse 60% 60% at 50% 0%,
+    #000 40%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 60% 60% at 50% 0%,
+    #000 40%,
+    transparent 100%
+  );
 }
 
 ::selection {
