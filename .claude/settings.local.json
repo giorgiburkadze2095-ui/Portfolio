@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(identify client/src/assets/hero.png)"
+    ]
+  }
+}
