@@ -25,7 +25,7 @@ test.describe('Featured Projects — Helop', () => {
       ),
     ).toBeVisible()
 
-    for (const tag of ['React', 'TypeScript', 'Tailwind CSS', 'Node.js']) {
+    for (const tag of ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'NestJS']) {
       await expect(card.getByText(tag, { exact: true })).toBeVisible()
     }
   })
