@@ -1,7 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
 import Reveal from './Reveal'
 
-const TECH_TAGS = ['React', 'TypeScript', 'Tailwind CSS', 'Node.js']
+const TECH_TAGS = ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'NestJS']
 
 export default function Projects() {
   return (
